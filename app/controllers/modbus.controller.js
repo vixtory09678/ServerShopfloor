@@ -34,7 +34,7 @@ exports.requestParetoChartData = function (req, socket, mqtt) {
             var data = [];
             for (let i = 0; i < 13; i++) {
                 data.push(
-                    model.paretoChartModel(machine_config.name, machine_config.ip, id, [
+                    model.paretoChartModel(machine_config.name, machine_config.ip, i, [
                         resp.response._body._values[i],
                         resp.response._body._values[i + 13]
                     ])
