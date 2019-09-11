@@ -16,7 +16,7 @@ exports.requestControlChartData = function (req, socket, mqtt) {
 
             var strJson = JSON.stringify(data.data);
 
-            console.log(`String json ${strJson}`);
+            console.log(`control json ${strJson}`);
             mqtt.publish("data/maintenance/control_chart", strJson, err => {
                 if (err) console.log(`public error is ${err}`);
             });
@@ -42,6 +42,7 @@ exports.requestParetoChartData = function (req, socket, mqtt) {
             }
 
             var strJson = JSON.stringify(data);
+            console.log(`pareto json ${strJson}`);
             mqtt.publish("data/maintenance/pareto_chart", strJson, err => {
                 if (err) console.log(`public pareto error is ${err}`);
             });
