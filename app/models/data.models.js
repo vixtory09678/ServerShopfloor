@@ -40,7 +40,7 @@ exports.paretoChartModel = function (name, ip, err_id, values) {
         ip: ip,
         error: {
             error_id: err_id,
-            description: error_description[err_id],
+            description_error: error_description[err_id],
             error_stack: values[0],
             time_error: values[1]
         }
