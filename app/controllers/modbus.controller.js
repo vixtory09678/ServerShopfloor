@@ -26,23 +26,23 @@ exports.requestControlChartData = function (req, socket, mqtt) {
         });
 };
 
-exports.requestParetoChartData = function (req, socket, mqtt) {
+exports.requestParetoChartData = function (req, socket, mqtt, addr) {
     req
         .readHoldingRegisters(5, 26)
         .then(function (resp) {
 
-            var data = [];
-            for (let i = 0; i < 13; i++) {
-                data.push(
-                    model.paretoChartModel(machine_config.name, machine_config.ip, i, [
-                        resp.response._body._values[i],
-                        resp.response._body._values[i + 13]
-                    ])
-                );
-            }
+            var data = model.paretoChartModel(machine_config.name, machine_config.ip, addr, [
+                resp.response._body._values[addr],
+                resp.response._body._values[addr + 13]
+            ]);
+            // for (let i = 0; i < 13; i++) {
+            //     data.push(
+
+            //     );
+            // }
 
             var strJson = JSON.stringify(data);
-            // console.log(`pareto json ${strJson}`);
+            console.log(`pareto json ${strJson}`);
             mqtt.publish("data/maintenance/pareto_chart", strJson, err => {
                 if (err) console.log(`public pareto error is ${err}`);
             });
@@ -75,7 +75,7 @@ exports.requestAlarm = function (req, socket, mqtt) {
                 } else {
                     if (stateCheckDuplicate[i]) {
                         stateCheckDuplicate[i] = false;
-
+                        modbusController.requestParetoChartData(req, socket, mqtt, i);
                         data.description_error = "clear";
                         var strJson = JSON.stringify(data)
                         console.log(`print clear error station ${strJson}`)

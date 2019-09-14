@@ -20,9 +20,9 @@ exports.run = function (mqtt) {
         setInterval(function () {
             modbusController.requestControlChartData(modbusClient, socket, mqtt)
         }, 4000)
-        setInterval(function () {
-            modbusController.requestParetoChartData(modbusClient, socket, mqtt)
-        }, 4000)
+        // setInterval(function () {
+        //     modbusController.requestParetoChartData(modbusClient, socket, mqtt)
+        // }, 4000)
         setInterval(function () {
             modbusController.requestAlarm(modbusClient, socket, mqtt)
         }, 1000)
