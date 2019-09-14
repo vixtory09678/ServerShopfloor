@@ -42,7 +42,7 @@ exports.requestParetoChartData = function (req, socket, mqtt) {
             }
 
             var strJson = JSON.stringify(data);
-            console.log(`pareto json ${strJson}`);
+            // console.log(`pareto json ${strJson}`);
             mqtt.publish("data/maintenance/pareto_chart", strJson, err => {
                 if (err) console.log(`public pareto error is ${err}`);
             });
