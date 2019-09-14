@@ -8,7 +8,7 @@ exports.onConnect = function () {
 }
 
 exports.onMessage = function (topic, message) {
-    console.log(`${topic} => ${message}`);
+    console.log(`${topic}`);
     if (!client) return;
 }
 
