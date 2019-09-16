@@ -14,7 +14,7 @@ exports.requestControlChartData = function (req, socket, mqtt) {
                 resp.response._body._values
             );
 
-            var strJson = JSON.stringify(data.data);
+            var strJson = JSON.stringify(data);
 
             console.log(`control json ${strJson}`);
             mqtt.publish("data/maintenance/control_chart", strJson, err => {
