@@ -7,9 +7,7 @@ var async = require('async')
 exports.run = function (mqtt) {
     options.forEach(option => {
         setInterval(() => {
-            modbusController.readStateMachine(option, (resp) => {
-                console.log(resp);
-            }, mqtt)
+            modbusController.readStateMachine(option, mqtt)
         }, 4000)
     })
 }

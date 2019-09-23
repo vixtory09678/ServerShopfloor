@@ -1,13 +1,7 @@
 const modbus = require('jsmodbus')
-var reconnect = require('net-socket-reconnect')
-
-exports.readStateMachine = function (station, callback, mqtt) {
-    client = reconnect({
-        'host': station.ip,
-        'port': station.port,
-        'reconnectInterval': 1000,
-        'reconnectTimes': 100
-    })
+const net = require('net')
+const client = new net.Socket()
+exports.readStateMachine = function (station, mqtt) {
 
     var modbusClient = new modbus.client.TCP(client, station.unitId)
     var modbusController = require('./modbus_request.controller')
@@ -22,4 +16,11 @@ exports.readStateMachine = function (station, callback, mqtt) {
     client.on('close', function (err) {
         console.log(`Client Close unit[${station.unitId}]`, err)
     })
+
+    client.connect({
+        'host': station.ip,
+        'port': station.port,
+        'reconnectInterval': 1000,
+        'reconnectTimes': 100
+    });
 }
