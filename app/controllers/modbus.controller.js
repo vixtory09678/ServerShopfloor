@@ -9,6 +9,7 @@ exports.readStateMachine = function (station, mqtt) {
     client.on('connect', function () {
         modbusController.requestControlChartData(modbusClient, client, mqtt)
         modbusController.requestAlarm(modbusClient, client, mqtt)
+        client.end()
     });
     client.on('error', function (err) {
         console.log(`Client Error unit[${station.unitId}]`, err)
