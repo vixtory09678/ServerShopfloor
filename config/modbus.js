@@ -30,10 +30,10 @@ exports.run = function (mqtt) {
             }, 1000)
         });
         socket[i].on('error', function (err) {
-            console.log('Client Error', err)
+            console.log(`Client Error ${i}`, err)
         })
         socket[i].on('close', function (err) {
-            console.log('Client Close', err)
+            console.log(`Client Close ${i}`, err)
         })
     }
 
