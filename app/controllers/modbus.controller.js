@@ -3,13 +3,13 @@ const net = require('net')
 const client = new net.Socket()
 exports.readStateMachine = function (station, mqtt) {
 
-    var modbusClient = new modbus.client.TCP(client, station.unitId)
+    var modbusClient = modbus.client.TCP(client, station.unitId)
     var modbusController = require('./modbus_request.controller')
 
     client.on('connect', function () {
         modbusController.requestControlChartData(modbusClient, client, mqtt)
         modbusController.requestAlarm(modbusClient, client, mqtt)
-        client.end()
+
     });
     client.on('error', function (err) {
         console.log(`Client Error unit[${station.unitId}]`, err)
