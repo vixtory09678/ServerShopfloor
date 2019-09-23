@@ -11,6 +11,7 @@ var socket = []
 options.forEach(option => {
     socket.push(reconnect(option))
 });
+console.log(socket);
 
 var modbusController = require('../app/controllers/modbus.controller')
 
