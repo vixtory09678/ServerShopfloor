@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "jsmodbus": "~3.1.3",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.13.15",
     "mqtt": "~3.0.0",
     "async": "3.2.2",
     "net-socket-reconnect": "0.0.9"
